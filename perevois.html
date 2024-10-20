@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LuckyGift - Рандомайзери</title>
+  <link rel="icon" href="./img/icon.png" type="image/x-icon">
+  <link rel="stylesheet" href="./css/styles.css">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom, rgba(141, 218, 243, 0.7), rgba(234, 234, 121, 0.906));
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo-container">
+      <a href="index.html">
+        <img src="./img/icon.png" alt="Logo" class="logo"> </a>
+      <h1 class="logo-title">LuckyGift</h1>
+    </div>
+
+    <nav class="nav-container">
+      <a href="index.html">Головна</a>
+      <a href="about.html">Про проект</a>
+      <a href="reviews.html">Відгуки</a>
+      <a href="blog.html">Блог</a>
+    </nav>
+  </header>
+
+  <div class="layout-container">
+    <aside>
+      <button class="aside-butn" onclick="showCurrentDraws()">Мої розіграші</button>
+      <button class="aside-butn" onclick="window.location.href='randomtou.html'">Рандомайзери</button>
+      <input type="file" id="upload-participants" accept=".csv,.xlsx" style="display:none"
+        onchange="uploadParticipants()">
+      <button class="aside-butn" onclick="document.getElementById('upload-participants').click()">Завантажити
+        учасників</button>
+      <button class="aside-butn" id="view-participants-btn" onclick="viewParticipants()">Переглянути учасників</button>
+    </aside>
+
+    <div class="main-content">
+      <div class="input-container">
+        <label for="prizes">КІЛЬКІСТЬ ПРИЗОВИХ ЧИСЕЛ</label>
+        <input type="number" id="prizes" value="1" min="1">
+        <button id="generate-btn" onclick="generateWinner()">ЗГЕНЕРУВАТИ >>></button>
+      </div>
+
+      <div class="result-section">
+        <div id="result-boxas" class="animate__animated">
+          <span id="result"></span>
+          <div id="firework-container" class="firework-container"></div>
+        </div>
+
+        <div id="previous-results">
+          <h3>Останні вигравші учасники:</h3>
+          <ul id="history"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="randomizer-description">
+    <p class="para">
+      З метою забезпечення чесності конкурсів та розіграшів призів LuckyGift розробив власний максимально чесний та
+      незалежний рандомайзер, що дозволяє визначити переможця.
+    </p>
+    <p class="para1">
+      Головними критеріями при створенні генератора випадкових чисел стали чесність, відкритість та зручність. Кожен
+      може
+      скористатися рандомайзером від LuckyGift, щоб швидко та легко отримати випадкове число в заданих межах, тим самим
+      визначивши переможця конкурсу або ж отримавши результат для різних цілей.
+    </p>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <img src="./img/icon.png" alt="Logo" class="footer-logo">
+      <h1 class="logo-title">LuckyGift</h1>
+      <div class="footer-text">
+        <p>2024 Всі права захищені.</p>
+        <nav class="footer-nav">
+          <a href="#">Контакти</a>
+          <a href="#">Політика конфіденційності</a>
+          <a href="#">Умови використання</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="./js/script.js"></script>
+  <script src="./js/fireworks.js"></script>
+  <script src="./js/participants.js"></script>
+  <script>
+    let participants = [];
+    let winnersHistory = []; // Масив для зберігання вигравших учасників
+
+    // Функція для завантаження учасників з файлу
+    function uploadParticipants() {
+      const fileInput = document.getElementById('upload-participants');
+      const file = fileInput.files[0];
+
+      if (!file) {
+        alert('Будь ласка, виберіть файл.');
+        return;
+      }
+
+      const reader = new FileReader();
+
+      reader.onload = function (event) {
+        const data = new Uint8Array(event.target.result);
+        const workbook = XLSX.read(data, { type: 'array' });
+
+        // Припустимо, що ми беремо дані з першого аркуша
+        const firstSheetName = workbook.SheetNames[0];
+        const worksheet = workbook.Sheets[firstSheetName];
+
+        // Конвертація даних з аркуша в масив
+        const json = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+        // Заповнюємо масив учасників
+        participants = json.flat().map(participant => participant.trim()).filter(participant => participant);
+
+        // Відображення повідомлення про успішне завантаження
+        alert('Файл завантажено! Тепер ви можете генерувати переможців.');
+
+        // Очищаємо список попередніх результатів
+        clearWinnersHistory();
+      };
+
+      reader.readAsArrayBuffer(file);
+    }
+
+    // Функція для очищення історії переможців
+    function clearWinnersHistory() {
+      winnersHistory = []; // Очищаємо історію переможців
+      displayWinnersInHistory(); // Очищаємо відображення в UI
+    }
+
+    // Функція для генерації переможця
+    function generateWinner() {
+      if (participants.length === 0) {
+        alert('Будь ласка, спочатку завантажте учасників з файлу.');
+        return;
+      }
+
+      const prizeCount = parseInt(document.getElementById('prizes').value);
+      const winners = [];
+
+      for (let i = 0; i < prizeCount; i++) {
+        const winnerIndex = Math.floor(Math.random() * participants.length);
+        const winner = participants[winnerIndex];
+
+        if (!winners.includes(winner)) { // Перевірка на унікальність переможців
+          winners.push(winner);
+          winnersHistory.push(winner); // Додаємо переможця в історію виграшів
+        }
+      }
+
+      document.getElementById('result').innerText = ` ${winners.join(', ')}`;
+      displayWinnersInHistory();
+
+      // Відтворення аудіо аплодисментів
+      const applauseAudio = new Audio("https://www.soundjay.com/human/applause-8.mp3");
+      applauseAudio.play();
+    }
+
+    // Функція для відображення переможців в історії
+    function displayWinnersInHistory() {
+      const historyList = document.getElementById('history');
+      historyList.innerHTML = ''; // Очищаємо старі дані
+
+      winnersHistory.forEach(winner => {
+        const li = document.createElement('li');
+        li.innerText = winner;
+        historyList.appendChild(li);
+      });
+    }
+
+  </script>
+</body>
+
+</html>

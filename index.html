@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LuckyGift</title>
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="icon" href="./img/icon.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+  <style>
+    /* body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom, rgba(141, 218, 243, 0.7), rgba(255, 255, 255, 0.906));
+    } */
+
+    /* Стилі для модального вікна */
+    .modal {
+      display: none;
+      /* Сховати за замовчуванням */
+      position: fixed;
+      /* Залишає модальне вікно на місці */
+      z-index: 1000;
+      /* Помістити його поверх інших елементів */
+      left: 0;
+      top: 0;
+      width: 100%;
+      /* Займає всю ширину */
+      height: 100%;
+      /* Займає всю висоту */
+      background-color: rgba(0, 0, 0, 0.7);
+      /* Затемнення фону */
+      display: flex;
+      /* Використовуйте flex для вирівнювання */
+      justify-content: center;
+      /* Вирівняти по центру горизонтально */
+      align-items: center;
+      /* Вирівняти по центру вертикально */
+    }
+
+    .modal-content {
+      margin-left: 33%;
+      margin-top: 15%;
+      background-color: #fff;
+      /* Білий фон для вмісту модального вікна */
+      border-radius: 10px;
+      /* Закруглені кути */
+      padding: 20px;
+      /* Внутрішні відступи */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      /* Тінь для вікна */
+      width: 420px;
+      /* Ширина модального вікна */
+      max-width: 90%;
+      /* Максимальна ширина */
+      position: relative;
+      text-align: center;
+    }
+
+    .close {
+      cursor: pointer;
+      /* Курсор у вигляді вказівника для кнопки закриття */
+      font-size: 24px;
+      /* Розмір шрифту для кнопки закриття */
+      position: absolute;
+      /* Абсолютне позиціонування */
+      top: 10px;
+      /* Відступ від верху */
+      right: 10px;
+      /* Відступ від правого краю */
+    }
+
+    h2 {
+      margin-top: 0;
+      /* Відсутність верхнього відступу у заголовка */
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo-container">
+      <a href="index.html">
+        <img src="./img/icon.png" alt="Logo" class="logo"> </a>
+      <h1 class="logo-title">LuckyGift</h1>
+    </div>
+
+    <nav class="nav-container">
+      <a href="about.html">Про проект</a>
+      <a href="reviews.html">Відгуки</a>
+      <a href="instructions.html">Інструкція</a>
+      <a href="blog.html">Блог</a>
+      <div id="auth-header">
+        <button class="btn-modal" id="login-btn" style="margin-right: 10px;">Авторизація</button>
+        <span id="logged-in-user" style="margin-left: 10px;"></span>
+        <button class="btn-modal" id="logout-btn" style="display:none;">Вийти</button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Модальне вікно авторизації -->
+  <div class="modal" id="auth-modal" style="display: none;">
+    <div class="modal-content">
+      <span class="close" id="close-modal">&times;</span>
+      <h2 id="modal-title">Авторизація</h2>
+      <input class="dfsg" type="email" id="email" placeholder="Електронна пошта" required>
+      <input class="dfsg" type="password" id="password" placeholder="Пароль" required>
+      <button class="btn-modal-one" id="submit-auth-btn">Увійти</button>
+      <p id="auth-message" style="color: red;"></p>
+    </div>
+  </div>
+
+  <div class="layout-container">
+    <aside>
+      <button class="aside-butn" onclick="showCurrentDraws()">Мої розіграші</button>
+      <button class="aside-butn" onclick="window.location.href='randomtou.html'">Рандомайзери</button>
+      <input type="file" id="upload-participants" accept=".csv,.xlsx" style="display:none"
+        onchange="uploadParticipants()">
+      <button class="aside-butn" onclick="document.getElementById('upload-participants').click()">Завантажити
+        учасників</button>
+      <button class="aside-butn" id="view-participants-btn" onclick="viewParticipants()">Переглянути
+        учасників</button>
+    </aside>
+
+    <div class="main-content">
+      <div class="input-container">
+        <label for="min">МІНІМАЛЬНЕ ЧИСЛО</label>
+        <input type="number" id="min" value="1" min="1">
+        <label for="max">МАКСИМАЛЬНЕ ЧИСЛО</label>
+        <input type="number" id="max" value="10" min="1">
+        <label for="prizes">КІЛЬКІСТЬ ПРИЗОВИХ ЧИСЕЛ</label>
+        <input type="number" id="prizes" value="1" min="1">
+        <button id="generate-btn">ЗГЕНЕРУВАТИ >>></button>
+      </div>
+
+      <div class="result-section">
+        <div id="result-box" class="animate__animated">
+          <span id="result"></span>
+          <div id="firework-container" class="firework-container"></div>
+        </div>
+
+        <div id="previous-results">
+          <h3>Останні випавші числа:</h3>
+          <ul id="history"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="randomizer-description">
+    <p class="para">
+      З метою забезпечення чесності конкурсів та розіграшів призів LuckyGift розробив власний максимально чесний та
+      незалежний рандомайзер, що дозволяє визначити переможця.
+    </p>
+    <p class="para1">
+      Головними критеріями при створенні генератора випадкових чисел стали чесність, відкритість та зручність. Кожен
+      може
+      скористатися рандомайзером від LuckyGift, щоб швидко та легко отримати випадкове число в заданих межах, тим самим
+      визначивши переможця конкурсу або ж отримавши результат для різних цілей.
+    </p>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <img src="./img/icon.png" alt="Logo" class="footer-logo">
+      <h1 class="logo-title">LuckyGift</h1>
+      <div class="footer-text">
+        <p>2024 Всі права захищені.</p>
+        <nav class="footer-nav">
+          <a href="#">Контакти</a>
+          <a href="#">Політика конфіденційності</a>
+          <a href="#">Умови використання</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function uploadParticipants() {
+      const input = document.getElementById('upload-participants');
+      const file = input.files[0];
+
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const data = new Uint8Array(e.target.result);
+          const workbook = XLSX.read(data, { type: 'array' });
+          const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+          const participants = XLSX.utils.sheet_to_json(firstSheet, { header: 1 }).flat();
+
+          console.log("Завантажено учасників:", participants); // Додано для перевірки
+
+          if (participants.length > 0) {
+            const userId = localStorage.getItem('userId') || 'defaultUser';
+
+            // Очищення старих учасників
+            localStorage.removeItem(`participants_${userId}`);
+
+            // Додавання нових учасників
+            localStorage.setItem(`participants_${userId}`, JSON.stringify(participants));
+
+            alert("Учасники успішно завантажені!");
+            window.location.href = 'participants.html';
+          } else {
+            alert("Файл не містить учасників.");
+          }
+        };
+        reader.readAsArrayBuffer(file);
+      } else {
+        alert("Будь ласка, виберіть файл.");
+      }
+    }
+
+
+  </script>
+  <script src="./js/script.js"></script>
+  <script src="./js/auth.js"></script>
+  <script src="./js/fireworks.js"></script>
+  <script src="./js/participants.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,679 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: hsl(210, 36%, 96%);
+  /* Світло-блакитний */
+  color: #333;
+}
+
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+
+h1 {
+  font-size: 2rem;
+}
+
+
+.layout-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+aside {
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.aside-butn {
+  background: linear-gradient(60deg, #5d9df0, #0778d3);
+  color: white;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  width: 100%;
+}
+
+.aside-butn:hover {
+  background: linear-gradient(360deg, #ecdd0c, #e3f427);
+  /* Темніший блакитний */
+}
+
+.main-content {
+  display: flex;
+  /* gap: 50px; */
+  align-items: center;
+  justify-content: space-around;
+}
+
+
+.result-section {
+  text-align: center;
+}
+
+#result-box {
+  background-color: #ffffff;
+  /* Білий */
+  color: #007bff;
+  /* Блакитний */
+  font-size: 6rem;
+  width: 340px;
+  height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+  transition: transform 0.3s ease;
+  /* Плавный переход */
+}
+
+#result {
+  /* Убираем вращение */
+  animation: none;
+  /* Не вращаем текст */
+}
+
+
+
+#previous-results {
+  margin-top: 30px;
+  color: #007bff;
+  /* Блакитний */
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  font-size: 1.2rem;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  /* Вирівнювання по центру */
+  align-items: center;
+  /* Вертикальне вирівнювання */
+  margin: 20px 0;
+  /* Відступи зверху і знизу */
+}
+
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 55px;
+  margin-right: 15px;
+  margin-top: -10px;
+}
+
+.logo-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  margin: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  justify-content: space-around;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  /* Отступ между логотипом и навигацией */
+}
+
+
+.logo-title {
+  font-family: 'Arial', sans-serif;
+  font-size: 34px;
+  color: #077ad7;
+  text-shadow: 1px 1px 2px rgba(29, 72, 157, 0.5);
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: -10px;
+  align-items: center;
+}
+
+nav a {
+  color: #424141;
+  text-decoration: none;
+  font-size: 17px;
+
+}
+
+.main-content {
+  width: 950px;
+  margin: auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+}
+
+label {
+  font-size: 18px;
+  color: #59595a;
+  margin-bottom: -21px;
+}
+
+input[type="number"] {
+  padding: 12px;
+  border: 1px solid #59595a;
+  border-radius: 5px;
+  font-size: 25px;
+  transition: border-color 0.3s;
+  width: 260px;
+  text-align: center;
+  color: #007bff;
+}
+
+input[type="number"]:focus {
+  border-color: #ffc107;
+  outline: none;
+}
+
+button {
+  padding: 17px 50px;
+  background: linear-gradient(360deg, #ecdd0c, #008dff);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.btn-modal {
+  padding: 12px 25px;
+  background: linear-gradient(360deg, #ecdd0c, #008dff);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  margin-left: 25px;
+}
+
+.dfsg {
+  border: 1px solid;
+  padding: 10px 3px;
+  border-radius: 5px;
+}
+
+
+
+.btn-modal-one {
+  padding: 12px 30px;
+  background: linear-gradient(360deg, #ecdd0c, #008dff);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  margin-top: 15px;
+}
+
+button:hover {
+  background: linear-gradient(360deg, #ecdd0c, #008dff);
+  transform: translateY(-2px);
+}
+
+.result-section {
+  margin-top: 20px;
+  text-align: center;
+
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+#result-box {
+  margin: 20px 0;
+  font-size: 8rem;
+  padding: 20px;
+  background-image: url('../img/foto.png');
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  color: #333;
+}
+
+#previous-results {
+  margin-top: 20px;
+}
+
+#previous-results h3 {
+  color: #007bff;
+}
+
+#history {
+  list-style-type: none;
+  padding: 0;
+}
+
+#history li {
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+
+.result-section {
+  text-align: center;
+  display: flex;
+  /* Додаємо Flexbox для вирівнювання */
+  flex-direction: column;
+  /* Вирівнюємо елементи по вертикалі */
+  align-items: center;
+  /* Центруємо елементи */
+}
+
+#result-box {
+  background-color: #ffffff;
+  /* Білий */
+  color: #454646;
+  /* Блакитний */
+  font-size: 8rem;
+  width: 360px;
+  height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+  margin-bottom: 20px;
+  /* Відступ між результатом та історією */
+}
+
+#previous-results {
+  width: 300px;
+  margin-top: 0;
+  /* Прибираємо відступ */
+  color: #007bff;
+  /* Блакитний */
+  height: 100px;
+  /* Фіксована висота контейнера */
+  overflow-y: auto;
+  /* Додаємо прокрутку, якщо потрібно */
+}
+
+ul {
+  list-style: none;
+}
+
+
+footer {
+  background-color: #ffffff;
+  /* Білий фон */
+  color: #323232;
+  /* Синій текст */
+  padding: 30px 20px;
+  margin-top: 20px;
+
+}
+
+.footer-content {
+  display: flex;
+  /* Використання Flexbox для вирівнювання */
+  align-items: center;
+  /* Центруємо по вертикалі */
+  max-width: 1000px;
+  /* Максимальна ширина контенту футера */
+  margin: 0 auto;
+  /* Центруємо футер */
+}
+
+.footer-logo {
+  width: 55px;
+  /* Ширина логотипу */
+  height: auto;
+  /* Автоматична висота для збереження пропорцій */
+  margin-right: 20px;
+  margin-top: -20px;
+}
+
+.footer-text {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.footer-nav {
+  margin-top: 12px;
+}
+
+.footer-nav a {
+  color: #262626;
+  /* Синій текст для посилань */
+  margin: 0 10px;
+  /* Відступи між посиланнями */
+  text-decoration: none;
+  /* Без підкреслення */
+}
+
+.footer-nav a:hover {
+  text-decoration: underline;
+  /* Підкреслення при наведенні */
+}
+
+
+.randomizer-description {
+  background-image: url('../img/2768698.jpg');
+  background-color: hsl(210, 36%, 96%);
+  /* Білий фон з прозорістю */
+  color: black;
+  /* Чорний текст */
+  padding: 20px;
+  /* Внутрішні відступи */
+  border-radius: 8px;
+  /* Закруглені кути */
+  margin-top: 20px;
+  text-align: center;
+  /* Вирівнювання тексту по центру */
+  background-size: cover;
+  /* Зменшує розмір фону, щоб вписатися в блок */
+  background-repeat: no-repeat;
+  /* Не повторює фон */
+  background-position: center;
+  /* Вирівнює фон по центру */
+  height: 400px;
+
+  font-family: 'Poppins', sans-serif;
+  /* Встановлює шрифт */
+  font-size: 16px;
+  /* Розмір шрифту */
+}
+
+.para {
+  font-size: 19px;
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 75px;
+  font-weight: bold;
+}
+
+.para1 {
+  font-size: 16px;
+  width: 55%;
+  margin: 0 auto;
+  margin-top: 25px;
+}
+
+
+/*  */
+
+.image-section {
+  text-align: center;
+  /* Вирівнювання картинки по центру */
+  margin-top: 20px;
+  /* Відступ зверху */
+}
+
+.responsive-image {
+  max-width: 100%;
+  /* Зберігає пропорції картинки */
+  height: 200px;
+  /* Автоматична висота для збереження пропорцій */
+  border-radius: 8px;
+  /* Закруглені кути картинки */
+}
+
+
+/*  */
+
+.layoutsda-container {
+  padding: 20px;
+  background-color: white;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #1042da;
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+h3 {
+  color: #333;
+  font-size: 1.5em;
+  margin-top: 20px;
+}
+
+p,
+ul {
+  font-size: 1.1em;
+  line-height: 1.6;
+}
+
+.layoutawq-container {
+  padding: 20px;
+  background-color: white;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.blog-post {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  text-align: left;
+}
+
+.blog-post ul {
+  margin-left: 20px;
+}
+
+.la-container {
+  padding: 20px;
+  background-color: white;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+/*  */
+
+.lawas-container {
+  padding: 20px;
+  background-color: white;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #0d53df;
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+h3 {
+  color: #333;
+  font-size: 1.5em;
+  margin-top: 20px;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.6;
+}
+
+#review-form {
+  margin-top: 20px;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+  resize: none;
+}
+
+.vtefaj {
+  margin-top: 10px;
+  background-color: #4b0082;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.vtefaj:hover {
+  background-color: #ffa500;
+  /* Оранжевий колір при наведенні */
+}
+
+#review-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+#review-list li {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.delete-button {
+  background-color: transparent;
+  border: none;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 1.2em;
+}
+
+
+
+table {
+  width: 80%;
+  /* Встановлюємо ширину таблиці */
+  border-collapse: collapse;
+  /* Об'єднуємо кордони клітинок */
+  margin: 20px auto;
+  /* Відступи зверху і знизу */
+}
+
+th,
+td {
+  border: 1px solid #787777;
+  /* Кордони клітинок */
+  padding: 10px;
+  /* Внутрішні відступи в клітинках */
+  text-align: center;
+  /* Вирівнювання тексту по центру */
+}
+
+th {
+  background-color: #f2f2f2;
+  /* Колір фону заголовків */
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+  /* Зеброве оформлення для парних рядків */
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+  /* Підсвітка рядка при наведенні */
+}
+
+
+.text-fghb {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 50px 20px;
+}
+
+#result-boxas {
+  margin: 20px 0;
+  font-size: 8rem;
+  padding: 20px;
+  background-image: url('../box.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  color: #333;
+}
+
+#result-boxas {
+  background-color: #ffffff;
+  color: #181818;
+  font-size: 4rem;
+  width: 360px;
+  height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+  margin-bottom: 20px;
+}

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LuckyGift - Рандомайзери</title>
+  <link rel="icon" href="./img/icon.png" type="image/x-icon">
+  <link rel="stylesheet" href="./css/styles.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      background: linear-gradient(to bottom, rgba(141, 218, 243, 0.7), rgba(234, 234, 121, 0.906));
+      padding: 20px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .randomizer {
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #fff;
+      max-width: 600px;
+    }
+
+    #participants-list {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo-container">
+      <a href="index.html">
+        <img src="./img/icon.png" alt="Logo" class="logo"> </a>
+      <h1 class="logo-title">LuckyGift</h1>
+    </div>
+
+    <nav class="nav-container">
+      <a href="index.html">Головна</a>
+      <a href="about.html">Про проект</a>
+      <a href="reviews.html">Відгуки</a>
+      <a href="blog.html">Блог</a>
+    </nav>
+  </header>
+
+  <div class="text-fghb">
+
+    <!-- Перший рандомайзер (для генерації чисел) -->
+    <div class="result-section">
+      <h3>Рандомайзер чисел</h3>
+      <div id="result-box" class="animate__animated">
+        <span id="result"></span>
+        <div id="firework-container" class="firework-container"></div>
+      </div>
+      <button class="aside-butn" onclick="window.location.href='index.html'">Запустити рандомайзер</button>
+    </div>
+
+    <!-- Другий рандомайзер (для генерації імен клієнтів) -->
+    <div class="result-section">
+      <h3>Рандомайзер імен</h3>
+      <div id="result-boxas" class="animate__animated">
+        <span id="result"></span>
+        <div id="firework-container" class="firework-container"></div>
+      </div>
+      <button class="aside-butn" onclick="window.location.href='perevois.html'">Запустити рандомайзер</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <img src="./img/icon.png" alt="Logo" class="footer-logo">
+      <h1 class="logo-title">LuckyGift</h1>
+      <div class="footer-text">
+        <p>2024 Всі права захищені.</p>
+        <nav class="footer-nav">
+          <a href="#">Контакти</a>
+          <a href="#">Політика конфіденційності</a>
+          <a href="#">Умови використання</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Функція для відкриття рандомайзера
+    function openRandomizer() {
+      window.location.href = 'randomtou.html'; // Замініть на URL вашого рандомайзера
+    }
+
+    // Функція для завантаження учасників з файлу
+    function uploadParticipants() {
+      const fileInput = document.getElementById('upload-participants');
+      const file = fileInput.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function (event) {
+        const text = event.target.result;
+        const participants = parseCSV(text); // Ваша функція парсингу CSV
+        localStorage.setItem('participants', JSON.stringify(participants));
+        displayParticipants(participants);
+      };
+
+      reader.readAsText(file);
+    }
+
+    // Функція для парсингу CSV
+    function parseCSV(text) {
+      return text.split('\n').map(line => line.trim()).filter(line => line); // Припускаємо, що учасники розділені новими рядками
+    }
+
+    // Функція для відображення учасників у таблиці
+    function displayParticipants(participants) {
+      const tbody = document.getElementById('participants-body');
+      tbody.innerHTML = ''; // Очищаємо старі дані
+
+      participants.forEach((participant, index) => {
+        const row = tbody.insertRow();
+        row.insertCell(0).innerText = index + 1;
+        row.insertCell(1).innerText = participant;
+      });
+    }
+
+    // Функція для генерації переможця з файлу
+    function generateFromFile() {
+      const participants = JSON.parse(localStorage.getItem('participants')) || [];
+      if (participants.length > 0) {
+        const winnerIndex = Math.floor(Math.random() * participants.length);
+        alert(`Переможець: ${participants[winnerIndex]}`);
+      } else {
+        alert('Будь ласка, спочатку завантажте учасників з файлу.');
+      }
+    }
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Учасники LuckyGift</title>
+  <link rel="icon" href="./img/icon.png" type="image/x-icon">
+  <link rel="stylesheet" href="./css/styles.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom, rgba(141, 218, 243, 0.7), rgba(234, 234, 121, 0.906));
+    }
+
+    h2 {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    #participants-list {
+      margin: 20px auto;
+      max-width: 600px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+
+    table {
+      width: 100%;
+      /* Ширина таблиці на 100% */
+      border-collapse: collapse;
+      /* Об'єднуємо кордони клітинок */
+    }
+
+    th,
+    td {
+      border: 1px solid #ccc;
+      /* Кордони клітинок */
+      padding: 10px;
+      /* Внутрішні відступи в клітинках */
+      text-align: center;
+      /* Вирівнювання тексту по центру */
+    }
+
+    th {
+      background-color: #f2f2f2;
+      /* Колір фону заголовків */
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+      /* Зеброве оформлення для парних рядків */
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+      /* Підсвітка рядка при наведенні */
+    }
+
+    .remove-button {
+      display: block;
+      /* Кнопка на новому рядку */
+      margin: 20px auto;
+      /* Центрування кнопки */
+      padding: 10px 20px;
+      /* Внутрішні відступи кнопки */
+      background-color: #ff4d4d;
+      /* Червоний фон */
+      color: white;
+      /* Білий текст */
+      border: none;
+      /* Без кордонів */
+      border-radius: 5px;
+      /* Заокруглені краї */
+      cursor: pointer;
+      /* Курсор у вигляді руки при наведенні */
+      font-size: 16px;
+      /* Розмір тексту кнопки */
+    }
+
+    .remove-button:hover {
+      background-color: #ff1a1a;
+      /* Темніший червоний при наведенні */
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo-container">
+      <a href="index.html">
+        <img src="./img/icon.png" alt="Logo" class="logo">
+      </a>
+      <h1 class="logo-title">LuckyGift</h1>
+    </div>
+
+    <nav class="nav-container">
+      <a href="index.html">Про проект</a>
+      <a href="reviews.html">Відгуки</a>
+      <a href="instructions.html">Інструкція</a>
+      <a href="blog.html">Блог</a>
+    </nav>
+  </header>
+
+  <h2>Список учасників</h2>
+  <div id="participants-list">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Учасник</th>
+        </tr>
+      </thead>
+      <tbody id="participants-body">
+        <!-- Учасники будуть додані сюди -->
+      </tbody>
+    </table>
+    <button id="remove-participants" class="remove-button">Видалити всіх учасників</button>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const userId = localStorage.getItem('userId') || 'defaultUser';
+      const participantsKey = `participants_${userId}`;
+      const participants = JSON.parse(localStorage.getItem(participantsKey)) || [];
+
+      console.log("Зчитані учасники:", participants); // Додано для перевірки
+
+      const tbody = document.getElementById('participants-body');
+      tbody.innerHTML = ''; // Очищуємо старі дані
+
+      if (participants.length > 0) {
+        participants.forEach((participant, index) => {
+          const row = tbody.insertRow();
+          row.insertCell(0).innerText = index + 1;
+          row.insertCell(1).innerText = participant;
+        });
+      } else {
+        const row = tbody.insertRow();
+        row.insertCell(0).innerText = "Немає учасників для відображення.";
+      }
+
+      // Додаємо обробник події для кнопки видалення
+      document.getElementById('remove-participants').addEventListener('click', function () {
+        localStorage.removeItem(participantsKey); // Видаляємо учасників з локального сховища
+        tbody.innerHTML = ''; // Очищуємо таблицю
+        const row = tbody.insertRow();
+        row.insertCell(0).innerText = "Немає учасників для відображення."; // Показуємо повідомлення
+      });
+    });
+  </script>
+</body>
+
+</html>
