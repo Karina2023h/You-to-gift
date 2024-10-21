@@ -30,6 +30,12 @@ document.getElementById("generate-btn").addEventListener("click", () => {
   // Отображение сгенерированных чисел
   document.getElementById("result").textContent = randomNumbers.join(", ");
 
+  // Задержка перед воспроизведением аудио для победителя
+  setTimeout(() => {
+    const winnerAudio = new Audio("../s-aplodismentami.mp3"); // Замените ссылку на свой звук
+    winnerAudio.play();
+  }, 1000); // Задержка в 1000 мс (1 секунда)
+
   // Сохранение последнего результата в истории
   const history = document.getElementById("history");
   const li = document.createElement("li");
