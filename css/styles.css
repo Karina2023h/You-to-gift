@@ -7,7 +7,6 @@
 body {
   font-family: 'Poppins', sans-serif;
   background-color: hsl(210, 36%, 96%);
-  /* Світло-блакитний */
   color: #333;
 }
 
@@ -51,12 +50,10 @@ aside {
 
 .aside-butn:hover {
   background: linear-gradient(360deg, #ecdd0c, #e3f427);
-  /* Темніший блакитний */
 }
 
 .main-content {
   display: flex;
-  /* gap: 50px; */
   align-items: center;
   justify-content: space-around;
 }
@@ -68,9 +65,7 @@ aside {
 
 #result-box {
   background-color: #ffffff;
-  /* Білий */
   color: #007bff;
-  /* Блакитний */
   font-size: 6rem;
   width: 340px;
   height: 340px;
@@ -82,21 +77,15 @@ aside {
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
   transition: transform 0.3s ease;
-  /* Плавный переход */
 }
 
 #result {
-  /* Убираем вращение */
   animation: none;
-  /* Не вращаем текст */
 }
-
-
 
 #previous-results {
   margin-top: 30px;
   color: #007bff;
-  /* Блакитний */
 }
 
 ul {
@@ -110,11 +99,8 @@ li {
 .logo-container {
   display: flex;
   justify-content: center;
-  /* Вирівнювання по центру */
   align-items: center;
-  /* Вертикальне вирівнювання */
   margin: 20px 0;
-  /* Відступи зверху і знизу */
 }
 
 
@@ -151,7 +137,7 @@ header {
   display: flex;
   align-items: center;
   margin-bottom: 15px;
-  /* Отступ между логотипом и навигацией */
+
 }
 
 
@@ -316,18 +302,13 @@ button:hover {
 .result-section {
   text-align: center;
   display: flex;
-  /* Додаємо Flexbox для вирівнювання */
   flex-direction: column;
-  /* Вирівнюємо елементи по вертикалі */
   align-items: center;
-  /* Центруємо елементи */
 }
 
 #result-box {
   background-color: #ffffff;
-  /* Білий */
   color: #454646;
-  /* Блакитний */
   font-size: 8rem;
   width: 360px;
   height: 340px;
@@ -339,19 +320,15 @@ button:hover {
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
   margin-bottom: 20px;
-  /* Відступ між результатом та історією */
 }
 
 #previous-results {
   width: 300px;
   margin-top: 0;
-  /* Прибираємо відступ */
   color: #007bff;
-  /* Блакитний */
   height: 100px;
-  /* Фіксована висота контейнера */
   overflow-y: auto;
-  /* Додаємо прокрутку, якщо потрібно */
+
 }
 
 ul {
@@ -361,114 +338,79 @@ ul {
 
 footer {
   background-color: #ffffff;
-  /* Білий фон */
   color: #323232;
-  /* Синій текст */
   padding: 30px 20px;
   margin-top: 20px;
 
 }
 
-
-/* Стили по умолчанию (для десктопов) */
 .burger-menu {
   display: none;
-  /* Скрыть бургер-меню по умолчанию */
 }
 
 .nav-container {
   display: flex;
-  /* Показать навигацию по умолчанию на десктопах */
 }
 
 .aside-container {
   display: none;
-  /* Скрыть aside по умолчанию */
 }
 
 .footer-content {
   display: flex;
-  /* Використання Flexbox для вирівнювання */
   align-items: center;
-  /* Центруємо по вертикалі */
   max-width: 1000px;
-  /* Максимальна ширина контенту футера */
   margin: 0 auto;
-  /* Центруємо футер */
 }
 
 .footer-logo {
   width: 55px;
-  /* Ширина логотипу */
   height: auto;
-  /* Автоматична висота для збереження пропорцій */
   margin-right: 10px;
   margin-top: -20px;
 }
 
 .modal {
   display: none;
-  /* Сховати за замовчуванням */
   position: fixed;
-  /* Залишає модальне вікно на місці */
   z-index: 1000;
-  /* Помістити його поверх інших елементів */
   left: 0;
   top: 0;
   width: 100%;
-  /* Займає всю ширину */
   height: 100%;
-  /* Займає всю висоту */
   background-color: rgba(0, 0, 0, 0.7);
-  /* Затемнення фону */
   display: flex;
-  /* Використовуйте flex для вирівнювання */
   justify-content: center;
-  /* Вирівняти по центру горизонтально */
   align-items: center;
-  /* Вирівняти по центру вертикально */
 }
 
 .modal-content {
   margin-left: 33%;
   margin-top: 15%;
   background-color: #fff;
-  /* Білий фон для вмісту модального вікна */
   border-radius: 10px;
-  /* Закруглені кути */
   padding: 20px;
-  /* Внутрішні відступи */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  /* Тінь для вікна */
   width: 420px;
-  /* Ширина модального вікна */
   max-width: 90%;
-  /* Максимальна ширина */
   position: relative;
   text-align: center;
 }
 
 .close {
   cursor: pointer;
-  /* Курсор у вигляді вказівника для кнопки закриття */
   font-size: 24px;
-  /* Розмір шрифту для кнопки закриття */
   position: absolute;
-  /* Абсолютне позиціонування */
   top: 10px;
-  /* Відступ від верху */
   right: 10px;
-  /* Відступ від правого краю */
 }
 
 h2 {
   margin-top: 0;
-  /* Відсутність верхнього відступу у заголовка */
 }
 
 .burger-menu {
   display: none;
-  /* Скрыть бургер-меню по умолчанию */
   font-size: 30px;
   background: none;
   border: none;
@@ -486,44 +428,30 @@ h2 {
 
 .footer-nav a {
   color: #262626;
-  /* Синій текст для посилань */
   margin: 0 10px;
-  /* Відступи між посиланнями */
   text-decoration: none;
-  /* Без підкреслення */
 }
 
 .footer-nav a:hover {
   text-decoration: underline;
-  /* Підкреслення при наведенні */
 }
 
 
 .randomizer-description {
   background-image: url('../img/2768698.jpg');
   background-color: hsl(210, 36%, 96%);
-  /* Білий фон з прозорістю */
   color: black;
-  /* Чорний текст */
   padding: 20px;
-  /* Внутрішні відступи */
   border-radius: 8px;
-  /* Закруглені кути */
   margin-top: 20px;
   text-align: center;
-  /* Вирівнювання тексту по центру */
   background-size: cover;
-  /* Зменшує розмір фону, щоб вписатися в блок */
   background-repeat: no-repeat;
-  /* Не повторює фон */
   background-position: center;
-  /* Вирівнює фон по центру */
   height: 400px;
 
   font-family: 'Poppins', sans-serif;
-  /* Встановлює шрифт */
   font-size: 16px;
-  /* Розмір шрифту */
 }
 
 .para {
@@ -541,27 +469,17 @@ h2 {
   margin-top: 25px;
 }
 
-
-/*  */
-
 .image-section {
   text-align: center;
-  /* Вирівнювання картинки по центру */
   margin-top: 20px;
-  /* Відступ зверху */
 }
 
 .responsive-image {
   max-width: 100%;
-  /* Зберігає пропорції картинки */
   height: 200px;
-  /* Автоматична висота для збереження пропорцій */
   border-radius: 8px;
-  /* Закруглені кути картинки */
 }
 
-
-/*  */
 
 .layoutsda-container {
   padding: 20px;
@@ -620,7 +538,6 @@ ul {
   text-align: left;
 }
 
-/*  */
 
 .lawas-container {
   padding: 20px;
@@ -674,7 +591,6 @@ textarea {
 
 .vtefaj:hover {
   background-color: #ffa500;
-  /* Оранжевий колір при наведенні */
 }
 
 #review-list {
@@ -703,36 +619,27 @@ textarea {
 
 table {
   width: 80%;
-  /* Встановлюємо ширину таблиці */
   border-collapse: collapse;
-  /* Об'єднуємо кордони клітинок */
   margin: 20px auto;
-  /* Відступи зверху і знизу */
 }
 
 th,
 td {
   border: 1px solid #787777;
-  /* Кордони клітинок */
   padding: 10px;
-  /* Внутрішні відступи в клітинках */
   text-align: center;
-  /* Вирівнювання тексту по центру */
 }
 
 th {
   background-color: #f2f2f2;
-  /* Колір фону заголовків */
 }
 
 tr:nth-child(even) {
   background-color: #f9f9f9;
-  /* Зеброве оформлення для парних рядків */
 }
 
 tr:hover {
   background-color: #f1f1f1;
-  /* Підсвітка рядка при наведенні */
 }
 
 

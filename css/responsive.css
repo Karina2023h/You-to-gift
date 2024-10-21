@@ -21,7 +21,7 @@
   }
 
   .randomizer-description {
-    background-image: url(../img/2768698.jpg);
+    background-image: url("../img/2768698.jpg");
     background-color: hsl(210, 36%, 96%);
     color: black;
     padding: 10px;
@@ -113,8 +113,6 @@
     margin-top: 25px;
   }
 
-
-
   .footer-content {
     display: flex;
     align-items: center;
@@ -156,7 +154,6 @@
     right: -100%;
     background-color: white;
     width: 250px;
-
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
     transition: right 0.3s ease;
     border-radius: 5px;
@@ -182,7 +179,6 @@
 
   .nav-container.active {
     display: flex;
-    /* Показать навигацию, когда активна */
     right: 10px;
     gap: 10px;
   }
@@ -233,37 +229,27 @@
 
   .burger-menu {
     display: block;
-    /* Показать бургер-меню на мобильных */
   }
 
   .nav-container {
     display: none;
-    /* Скрыть навигацию на мобильных */
   }
 
   .nav-container {
     display: none;
-    /* Скрыть навигацию на мобильных */
     flex-direction: column;
-    /* Вертикальное размещение элементов */
     position: absolute;
-    /* Позиционировать абсолютно */
     top: 67px;
-    /* Поместить под хедером */
     right: 0;
-    /* Приложить к правому краю */
     background-color: white;
-    /* Фоновый цвет */
     width: 65%;
-    /* Занять 100% ширины */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 10px 5px;
-    /* Тень */
   }
 
   .nav-container.active {
     display: flex;
-    /* Показать навигацию, когда активна */
+    z-index: 1;
   }
 
   .text-fghb {
