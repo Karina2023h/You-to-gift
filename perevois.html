@@ -7,7 +7,7 @@
   <title>LuckyGift - Рандомайзери</title>
   <link rel="icon" href="./img/icon.png" type="image/x-icon">
   <link rel="stylesheet" href="./css/styles.css">
-  <link rel="stylesheet" href="./css/reqirem.css">
+  <link rel="stylesheet" href="./css/responsive.css">
 
   <style>
     body {
@@ -25,12 +25,13 @@
       <h1 class="logo-title">LuckyGift</h1>
     </div>
 
-    <nav class="nav-container">
+    <nav class="nav-container" id="nav">
       <a href="index.html">Головна</a>
       <a href="about.html">Про проект</a>
       <a href="reviews.html">Відгуки</a>
       <a href="blog.html">Блог</a>
     </nav>
+    <button class="burger-menu" id="burger-menu">&#9776;</button>
   </header>
 
   <div class="layout-container">
@@ -96,6 +97,7 @@
   <script src="./js/script.js"></script>
   <script src="./js/fireworks.js"></script>
   <script src="./js/participants.js"></script>
+  <script src="./js/burger.js"></script>
   <script>
     let participants = [];
     let winnersHistory = []; // Масив для зберігання вигравших учасників

@@ -7,7 +7,7 @@
   <title>Учасники LuckyGift</title>
   <link rel="icon" href="./img/icon.png" type="image/x-icon">
   <link rel="stylesheet" href="./css/styles.css">
-  <link rel="stylesheet" href="./css/reqirem.css">
+  <link rel="stylesheet" href="./css/responsive.css">
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -97,12 +97,13 @@
       <h1 class="logo-title">LuckyGift</h1>
     </div>
 
-    <nav class="nav-container">
+    <nav class="nav-container" id="nav">
       <a href="index.html">Про проект</a>
       <a href="reviews.html">Відгуки</a>
       <a href="instructions.html">Інструкція</a>
       <a href="blog.html">Блог</a>
     </nav>
+    <button class="burger-menu" id="burger-menu">&#9776;</button>
   </header>
 
   <h2>Список учасників</h2>
@@ -120,6 +121,21 @@
     </table>
     <button id="remove-participants" class="remove-button">Видалити всіх учасників</button>
   </div>
+
+  <footer>
+    <div class="footer-content">
+      <img src="./img/icon.png" alt="Logo" class="footer-logo">
+      <h1 class="logo-title">LuckyGift</h1>
+      <div class="footer-text">
+        <p>2024 Всі права захищені.</p>
+        <nav class="footer-nav">
+          <a href="#">Контакти</a>
+          <a href="#">Політика конфіденційності</a>
+          <a href="#">Умови використання</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -152,6 +168,7 @@
       });
     });
   </script>
+  <script src="./js/burger.js"></script>
 </body>
 
 </html>

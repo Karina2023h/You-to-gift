@@ -188,6 +188,12 @@ nav a {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
+
+.fytdyj {
+  display: flex;
+  align-items: center;
+}
+
 .input-container {
   display: flex;
   flex-direction: column;
@@ -363,6 +369,23 @@ footer {
 
 }
 
+
+/* Стили по умолчанию (для десктопов) */
+.burger-menu {
+  display: none;
+  /* Скрыть бургер-меню по умолчанию */
+}
+
+.nav-container {
+  display: flex;
+  /* Показать навигацию по умолчанию на десктопах */
+}
+
+.aside-container {
+  display: none;
+  /* Скрыть aside по умолчанию */
+}
+
 .footer-content {
   display: flex;
   /* Використання Flexbox для вирівнювання */
@@ -379,8 +402,77 @@ footer {
   /* Ширина логотипу */
   height: auto;
   /* Автоматична висота для збереження пропорцій */
-  margin-right: 20px;
+  margin-right: 10px;
   margin-top: -20px;
+}
+
+.modal {
+  display: none;
+  /* Сховати за замовчуванням */
+  position: fixed;
+  /* Залишає модальне вікно на місці */
+  z-index: 1000;
+  /* Помістити його поверх інших елементів */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Займає всю ширину */
+  height: 100%;
+  /* Займає всю висоту */
+  background-color: rgba(0, 0, 0, 0.7);
+  /* Затемнення фону */
+  display: flex;
+  /* Використовуйте flex для вирівнювання */
+  justify-content: center;
+  /* Вирівняти по центру горизонтально */
+  align-items: center;
+  /* Вирівняти по центру вертикально */
+}
+
+.modal-content {
+  margin-left: 33%;
+  margin-top: 15%;
+  background-color: #fff;
+  /* Білий фон для вмісту модального вікна */
+  border-radius: 10px;
+  /* Закруглені кути */
+  padding: 20px;
+  /* Внутрішні відступи */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* Тінь для вікна */
+  width: 420px;
+  /* Ширина модального вікна */
+  max-width: 90%;
+  /* Максимальна ширина */
+  position: relative;
+  text-align: center;
+}
+
+.close {
+  cursor: pointer;
+  /* Курсор у вигляді вказівника для кнопки закриття */
+  font-size: 24px;
+  /* Розмір шрифту для кнопки закриття */
+  position: absolute;
+  /* Абсолютне позиціонування */
+  top: 10px;
+  /* Відступ від верху */
+  right: 10px;
+  /* Відступ від правого краю */
+}
+
+h2 {
+  margin-top: 0;
+  /* Відсутність верхнього відступу у заголовка */
+}
+
+.burger-menu {
+  display: none;
+  /* Скрыть бургер-меню по умолчанию */
+  font-size: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .footer-text {

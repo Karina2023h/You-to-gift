@@ -11,67 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
-  <style>
-    .modal {
-      display: none;
-      /* Сховати за замовчуванням */
-      position: fixed;
-      /* Залишає модальне вікно на місці */
-      z-index: 1000;
-      /* Помістити його поверх інших елементів */
-      left: 0;
-      top: 0;
-      width: 100%;
-      /* Займає всю ширину */
-      height: 100%;
-      /* Займає всю висоту */
-      background-color: rgba(0, 0, 0, 0.7);
-      /* Затемнення фону */
-      display: flex;
-      /* Використовуйте flex для вирівнювання */
-      justify-content: center;
-      /* Вирівняти по центру горизонтально */
-      align-items: center;
-      /* Вирівняти по центру вертикально */
-    }
 
-    .modal-content {
-      margin-left: 33%;
-      margin-top: 15%;
-      background-color: #fff;
-      /* Білий фон для вмісту модального вікна */
-      border-radius: 10px;
-      /* Закруглені кути */
-      padding: 20px;
-      /* Внутрішні відступи */
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      /* Тінь для вікна */
-      width: 420px;
-      /* Ширина модального вікна */
-      max-width: 90%;
-      /* Максимальна ширина */
-      position: relative;
-      text-align: center;
-    }
-
-    .close {
-      cursor: pointer;
-      /* Курсор у вигляді вказівника для кнопки закриття */
-      font-size: 24px;
-      /* Розмір шрифту для кнопки закриття */
-      position: absolute;
-      /* Абсолютне позиціонування */
-      top: 10px;
-      /* Відступ від верху */
-      right: 10px;
-      /* Відступ від правого краю */
-    }
-
-    h2 {
-      margin-top: 0;
-      /* Відсутність верхнього відступу у заголовка */
-    }
-  </style>
 </head>
 
 <body>
@@ -82,7 +22,9 @@
       <h1 class="logo-title">LuckyGift</h1>
     </div>
 
-    <nav class="nav-container">
+    <button class="burger-menu" id="burger-menu">&#9776;</button>
+
+    <nav class="nav-container" id="nav">
       <a href="about.html">Про проект</a>
       <a href="reviews.html">Відгуки</a>
       <a href="instructions.html">Інструкція</a>
@@ -92,7 +34,18 @@
         <span id="logged-in-user" style="margin-left: 10px;"></span>
         <button class="btn-modal" id="logout-btn" style="display:none;">Вийти</button>
       </div>
+
+      <aside class="aside-container">
+        <button class="aside-butn" onclick="window.location.href='randomtou.html'">Рандомайзери</button>
+        <input type="file" id="upload-participants" accept=".csv,.xlsx" style="display:none"
+          onchange="uploadParticipants()">
+        <button class="aside-butn" onclick="document.getElementById('upload-participants').click()">Завантажити
+          учасників</button>
+        <button class="aside-butn" id="view-participants-btn" onclick="viewParticipants()">Переглянути
+          учасників</button>
+      </aside>
     </nav>
+
   </header>
 
   <!-- Модальне вікно авторизації -->
@@ -109,7 +62,6 @@
 
   <div class="layout-container">
     <aside>
-      <button class="aside-butn" onclick="showCurrentDraws()">Мої розіграші</button>
       <button class="aside-butn" onclick="window.location.href='randomtou.html'">Рандомайзери</button>
       <input type="file" id="upload-participants" accept=".csv,.xlsx" style="display:none"
         onchange="uploadParticipants()">
@@ -161,8 +113,10 @@
 
   <footer>
     <div class="footer-content">
-      <img src="./img/icon.png" alt="Logo" class="footer-logo">
-      <h1 class="logo-title">LuckyGift</h1>
+      <div class="fytdyj">
+        <img src="./img/icon.png" alt="Logo" class="footer-logo">
+        <h1 class="logo-title">LuckyGift</h1>
+      </div>
       <div class="footer-text">
         <p>2024 Всі права захищені.</p>
         <nav class="footer-nav">
@@ -212,10 +166,12 @@
 
 
   </script>
+
   <script src="./js/script.js"></script>
   <script src="./js/auth.js"></script>
   <script src="./js/fireworks.js"></script>
   <script src="./js/participants.js"></script>
+  <script src="./js/burger.js"></script>
 </body>
 
 </html>
