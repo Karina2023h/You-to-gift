@@ -112,7 +112,7 @@
   .main-content {
     display: flex;
     /* gap: 50px; */
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-around;
     flex-direction: column;
     padding: 10px;
