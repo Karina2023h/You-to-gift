@@ -13,19 +13,27 @@ document.getElementById("close-modal").onclick = function () {
 // Авторизація користувача
 document.getElementById("submit-auth-btn").onclick = function () {
   const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
+  const password = document.getElementById("password").value.trim();
 
   if (email && password) {
-    const users = JSON.parse(localStorage.getItem("users")) || {};
+    try {
+      const users = JSON.parse(localStorage.getItem("users")) || {};
+      console.log(users[email]?.password); // Виводимо збережений пароль для перевірки
+      console.log(password); // Виводимо введений пароль
 
-    // Перевіряємо, чи користувач існує і чи співпадає пароль
-    if (users[email] && users[email].password === password) {
-      localStorage.setItem("loggedInUser", email);
-      alert("Увійшли успішно!");
-      window.location.reload(); // Перезавантажуємо сторінку для відображення змін
-    } else {
+      // Перевіряємо, чи користувач існує і чи співпадає пароль
+      if (users[email] && users[email].password === password) {
+        localStorage.setItem("loggedInUser", email);
+        alert("Увійшли успішно!");
+        window.location.reload(); // Перезавантажуємо сторінку для відображення змін
+      } else {
+        document.getElementById("auth-message").innerText =
+          "Невірна електронна пошта або пароль.";
+      }
+    } catch (error) {
+      console.error("Error during authentication:", error);
       document.getElementById("auth-message").innerText =
-        "Невірна електронна пошта або пароль.";
+        "Сталася помилка при авторизації.";
     }
   } else {
     document.getElementById("auth-message").innerText =
