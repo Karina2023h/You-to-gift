@@ -322,9 +322,18 @@ fade-out {
   align-items: center;
 }
 
+#result {
+  text-shadow:
+    2px 2px 0 black,
+    -2px -2px 0 black,
+    2px -2px 0 black,
+    -2px 2px 0 black;
+}
+
 #result-box {
   background-color: #1262eb;
-  color: #454646;
+  color: rgb(14, 179, 14);
+  text-shadow: 3px 3px 0 black;
   font-size: 8.5rem;
   width: 670px;
   height: 540px;
