@@ -34,7 +34,7 @@ document.getElementById("generate-btn").addEventListener("click", () => {
   setTimeout(() => {
     const winnerAudio = new Audio("s-aplodismentami.mp3"); // Замените ссылку на свой звук
     winnerAudio.play();
-  }, 1000); // Задержка в 1000 мс (1 секунда)
+  }, 2000); // Задержка в 1000 мс (1 секунда)
 
   // Сохранение последнего результата в истории
   const history = document.getElementById("history");

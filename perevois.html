@@ -8,11 +8,20 @@
   <link rel="icon" href="./img/icon.png" type="image/x-icon">
   <link rel="stylesheet" href="./css/styles.css">
   <link rel="stylesheet" href="./css/responsive.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fireworks-js/dist/fireworks.min.js"></script>
 
   <style>
     body {
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(to bottom, rgba(141, 218, 243, 0.7), rgba(234, 234, 121, 0.906));
+    }
+
+    .winner-item {
+      font-size: 24px;
+      font-weight: bold;
+      color: #ff5722;
     }
   </style>
 </head>
@@ -24,7 +33,7 @@
         <img src="./img/icon.png" alt="Logo" class="logo"> </a>
       <h1 class="logo-title">LuckyGift</h1>
     </div>
-<button class="burger-menu" id="burger-menu">&#9776;</button>
+    <button class="burger-menu" id="burger-menu">&#9776;</button>
     <nav class="nav-container" id="nav">
       <a href="index.html">Головна</a>
       <a href="about.html">Про проект</a>
@@ -49,9 +58,20 @@
     </nav>
   </header>
 
+  <!-- Модальне вікно авторизації -->
+  <div class="modal" id="auth-modal" style="display: none;">
+    <div class="modal-content">
+      <span class="close" id="close-modal">&times;</span>
+      <h2 id="modal-title">Авторизація</h2>
+      <input class="dfsg" type="email" id="email" placeholder="Електронна пошта" required>
+      <input class="dfsg" type="password" id="password" placeholder="Пароль" required>
+      <button class="btn-modal-one" id="submit-auth-btn">Увійти</button>
+      <p id="auth-message" style="color: red;"></p>
+    </div>
+  </div>
+
   <div class="layout-container">
     <aside>
-      <button class="aside-butn" onclick="showCurrentDraws()">Мої розіграші</button>
       <button class="aside-butn" onclick="window.location.href='randomtou.html'">Рандомайзери</button>
       <input type="file" id="upload-participants" accept=".csv,.xlsx" style="display:none"
         onchange="uploadParticipants()">
@@ -62,9 +82,9 @@
 
     <div class="main-content">
       <div class="input-container">
-        <label for="prizes">КІЛЬКІСТЬ ПРИЗОВИХ ЧИСЕЛ</label>
+        <label for="prizes">КІЛЬКІСТЬ ВИГРАНИХ ІМЕН</label>
         <input type="number" id="prizes" value="1" min="1">
-        <button id="generate-btn" onclick="generateWinner()">ЗГЕНЕРУВАТИ >>></button>
+        <button id="generate-btn">ЗГЕНЕРУВАТИ >>></button>
       </div>
 
       <div class="result-section">
@@ -87,9 +107,8 @@
     </p>
     <p class="para1">
       Головними критеріями при створенні генератора випадкових чисел стали чесність, відкритість та зручність. Кожен
-      може
-      скористатися рандомайзером від LuckyGift, щоб швидко та легко отримати випадкове число в заданих межах, тим самим
-      визначивши переможця конкурсу або ж отримавши результат для різних цілей.
+      може скористатися рандомайзером від LuckyGift, щоб швидко та легко отримати випадкове число в заданих межах, тим
+      самим визначивши переможця конкурсу або ж отримавши результат для різних цілей.
     </p>
   </div>
 
@@ -108,11 +127,10 @@
     </div>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-  <script src="./js/script.js"></script>
-  <script src="./js/fireworks.js"></script>
-  <script src="./js/participants.js"></script>
-  <script src="./js/burger.js"></script>
+  <!-- Аудио элементы -->
+  <audio id="applause" src="https://www.soundjay.com/human/applause-8.mp3"></audio>
+  <audio id="firework-sound" src="s-aplodismentami.mp3"></audio>
+
   <script>
     let participants = [];
     let winnersHistory = []; // Масив для зберігання вигравших учасників
@@ -159,47 +177,129 @@
       displayWinnersInHistory(); // Очищаємо відображення в UI
     }
 
-    // Функція для генерації переможця
-    function generateWinner() {
+    const fireworkContainer = document.getElementById("firework-container");
+    const fireworks = new Fireworks(fireworkContainer, {
+      autoresize: true,
+      opacity: 0.9,
+      maxRockets: 40, // Максимальное количество ракет за один запуск
+      rocketSpawnInterval: 100, // Интервал появления ракет
+      defaultDuration: 5000, // Длительность эффекта
+    });
+
+    document.getElementById("generate-btn").addEventListener("click", function () {
       if (participants.length === 0) {
-        alert('Будь ласка, спочатку завантажте учасників з файлу.');
+        alert('Спочатку завантажте файл з учасниками.');
         return;
       }
 
-      const prizeCount = parseInt(document.getElementById('prizes').value);
+      const numberOfWinners = parseInt(document.getElementById("prizes").value);
       const winners = [];
+      const winnerNames = new Set(); // Сет для уникальних імен переможців
 
-      for (let i = 0; i < prizeCount; i++) {
-        const winnerIndex = Math.floor(Math.random() * participants.length);
-        const winner = participants[winnerIndex];
+      const resultBox = document.getElementById("result");
+      resultBox.innerHTML = ''; // Очищення попередніх результатів
 
-        if (!winners.includes(winner)) { // Перевірка на унікальність переможців
+      // Швидка генерація імен
+      const quickShowDuration = 2000; // Час швидкого перебору в мілісекундах
+      const quickShowInterval = 100; // Інтервал перебору в мілісекундах
+      const endTime = Date.now() + quickShowDuration;
+
+      const interval = setInterval(() => {
+        const randomIndex = Math.floor(Math.random() * participants.length);
+        resultBox.textContent = participants[randomIndex]; // Відображення випадкового учасника
+
+        if (Date.now() >= endTime) {
+          clearInterval(interval); // Зупинка перебору
+          pickWinners(numberOfWinners); // Вибір переможців
+        }
+      }, quickShowInterval);
+    });
+
+    // Функція для вибору переможців
+    function pickWinners(numberOfWinners) {
+      const winners = [];
+      const winnerNames = new Set(); // Сет для уникальних імен переможців
+
+      // Генерація переможців
+      while (winners.length < numberOfWinners && winners.length < participants.length) {
+        const randomIndex = Math.floor(Math.random() * participants.length);
+        const winner = participants[randomIndex];
+
+        if (!winnerNames.has(winner)) {
           winners.push(winner);
-          winnersHistory.push(winner); // Додаємо переможця в історію виграшів
+          winnerNames.add(winner); // Додаємо переможця в сет для унікальності
         }
       }
 
-      document.getElementById('result').innerText = ` ${winners.join(', ')}`;
-      displayWinnersInHistory();
-
-      // Відтворення аудіо аплодисментів
-      const applauseAudio = new Audio("https://www.soundjay.com/human/applause-8.mp3");
-      applauseAudio.play();
+      displayWinners(winners);
+      saveWinners(winners);
+      launchFireworks();
     }
 
-    // Функція для відображення переможців в історії
+    // Відображення переможців на екрані
+    // Відображення переможців на екрані
+    function displayWinners(winners) {
+      const resultBox = document.getElementById("result");
+      resultBox.innerHTML = ''; // Очищення попередніх результатів
+
+      // Відображення одного переможця
+      const finalWinner = winners.length > 0 ? winners[0] : 'Немає переможців';
+      resultBox.textContent = finalWinner;
+
+      // Відтворення звукового ефекту аплодисментів
+      const applauseAudio = document.getElementById("applause");
+      applauseAudio.currentTime = 0; // Скидання времени до начала
+      applauseAudio.play();
+
+      // Відтворення звукового ефекту фейерверка
+      const fireworkAudio = document.getElementById("firework-sound");
+      fireworkAudio.currentTime = 0; // Скидання времени до начала
+      fireworkAudio.play();
+
+      // Оновлюємо історію переможців
+      winnersHistory.push(finalWinner); // Додаємо нових переможців в історію
+      displayWinnersInHistory();
+    }
+
+
+    // Функція для збереження переможців
+    function saveWinners(winners) {
+      // Тут можна додати код для збереження даних на сервері або в локальному сховищі
+    }
+
+    // Відображення історії переможців
     function displayWinnersInHistory() {
-      const historyList = document.getElementById('history');
-      historyList.innerHTML = ''; // Очищаємо старі дані
+      const historyList = document.getElementById("history");
+      historyList.innerHTML = '';
 
       winnersHistory.forEach(winner => {
-        const li = document.createElement('li');
-        li.innerText = winner;
-        historyList.appendChild(li);
+        const winnerItem = document.createElement("li");
+        winnerItem.textContent = winner;
+        historyList.appendChild(winnerItem);
       });
     }
 
+    // Запуск феєрверку
+    function launchFireworks() {
+      fireworks.start();
+      setTimeout(() => fireworks.stop(), 5000); // Зупинка феєрверка через 5 секунд
+    }
+
+    // Функція для перегляду учасників
+    function viewParticipants() {
+      if (participants.length === 0) {
+        alert('Учасників ще немає. Завантажте файл з учасниками!');
+        return;
+      }
+
+      alert(`Список учасників:\n${participants.join('\n')}`);
+    }
+
+
   </script>
+  <script src="./js/auth.js"></script>
+  <script src="./js/burger.js"></script>
+  <script src="./js/participants.js"></script>
 </body>
 
 </html>
