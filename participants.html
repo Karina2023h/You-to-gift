@@ -122,6 +122,18 @@
     </nav>
   </header>
 
+  <div class="modal" id="auth-modal" style="display: none;">
+    <div class="modal-content">
+      <span class="close" id="close-modal">&times;</span>
+      <h2 id="modal-title">Авторизація</h2>
+      <input class="dfsg" type="email" id="email" placeholder="Електронна пошта" required>
+      <input class="dfsg" type="password" id="password" placeholder="Пароль" required>
+      <button class="btn-modal-one" id="submit-auth-btn">Увійти</button>
+      <button class="btn-modal-one" id="register-btn">Зареєструватися</button>
+      <p id="auth-message" style="color: red;"></p>
+    </div>
+  </div>
+
   <h2>Список учасників</h2>
   <div id="participants-list">
     <table>
@@ -185,6 +197,7 @@
     });
   </script>
   <script src="./js/burger.js"></script>
+  <script src="./js/auth.js"></script>
 </body>
 
 </html>
