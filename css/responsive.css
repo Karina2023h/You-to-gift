@@ -292,7 +292,8 @@
 
   #result-boxas {
     background-color: #ffffff;
-    color: #181818;
+    color: rgb(14, 179, 14);
+    text-shadow: 3px 3px 0 black;
     font-size: 4rem;
     width: 300px;
     height: 300px;
@@ -304,6 +305,14 @@
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
     margin-bottom: 20px;
+  }
+
+  result-section {
+    margin-top: 20px;
+    text-align: center;
+    padding: 1px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   }
 
 }

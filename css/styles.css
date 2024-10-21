@@ -347,6 +347,92 @@ fade-out {
   margin-bottom: 20px;
 }
 
+#result-boxaq {
+  background-color: #1262eb;
+  color: rgb(14, 179, 14);
+  text-shadow: 3px 3px 0 black;
+  font-size: 8.5rem;
+  width: 360px;
+  height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.785);
+  margin-bottom: 20px;
+}
+
+#result-boxaq {
+  margin: 20px 0;
+  font-size: 8rem;
+  padding: 20px;
+  background-image: url('../img/foto.png');
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  color: #333;
+  transition: background-image 0.7s ease;
+}
+
+#result-boxas {
+  margin: 20px 0;
+  font-size: 8rem;
+  padding: 20px;
+  background-image: url('../box.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  color: #333;
+}
+
+#result-boxaser {
+  background-color: #1262eb;
+  color: rgb(14, 179, 14);
+  text-shadow: 3px 3px 0 black;
+  font-size: 8.5rem;
+  width: 360px;
+  height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.785);
+  margin-bottom: 20px;
+}
+
+#result-boxaser {
+  margin: 20px 0;
+  font-size: 8rem;
+  padding: 20px;
+  background-image: url('../box.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  color: #333;
+}
+
+
+#result-boxas {
+  background-color: #ffffff;
+  color: rgb(14, 179, 14);
+  text-shadow: 3px 3px 0 black;
+  font-size: 7rem;
+  width: 670px;
+  height: 540px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+  margin-bottom: 20px;
+}
+
 #previous-results {
   width: 300px;
   margin-top: 0;
@@ -675,32 +761,7 @@ tr:hover {
   padding: 50px 20px;
 }
 
-#result-boxas {
-  margin: 20px 0;
-  font-size: 8rem;
-  padding: 20px;
-  background-image: url('../box.jpg');
-  background-size: cover;
-  background-position: center;
-  border-radius: 10px;
-  color: #333;
-}
 
-#result-boxas {
-  background-color: #ffffff;
-  color: #181818;
-  font-size: 4rem;
-  width: 360px;
-  height: 340px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
-  margin-bottom: 20px;
-}
 
 .firework-container {
   position: fixed;
