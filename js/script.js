@@ -41,7 +41,6 @@ function displayRapidResults(finalNumber) {
       // Задержка перед выбором финального числа
       setTimeout(() => {
         displayChosenNumber(finalNumber); // Показываем уже выбранное число
-        showFireworks(); // Показываем фейерверк
       }, 500);
     }
   }, 100); // Изменяем число каждые 100 мс
@@ -51,15 +50,6 @@ function displayRapidResults(finalNumber) {
 function displayChosenNumber(chosenNumber) {
   const resultText = document.getElementById("result");
   resultText.textContent = `${chosenNumber}`; // Отображаем выбранное число
-
-  // Очищаем предыдущий фейерверк
-  const fireworkContainer = document.getElementById("firework-container");
-  fireworkContainer.innerHTML = ""; // Очищаем контейнер
-
-  // Добавляем анимацию фейерверка
-  const firework = document.createElement("div");
-  firework.classList.add("firework");
-  fireworkContainer.appendChild(firework); // Добавляем фейерверк в контейнер
 
   // Воспроизводим звук аплодисментов
   const applause = new Audio("https://www.soundjay.com/human/applause-8.mp3");
@@ -79,22 +69,5 @@ function updateHistory(results) {
     const li = document.createElement("li");
     li.textContent = num;
     history.appendChild(li);
-  });
-}
-
-// Функция для показа фейерверка
-function showFireworks() {
-  const fireworkContainer = document.getElementById("firework-container");
-
-  // Создание фейерверка
-  const firework = document.createElement("div");
-  firework.classList.add("firework");
-
-  // Добавляем фейерверк в контейнер
-  fireworkContainer.appendChild(firework);
-
-  // Удаляем фейерверк после анимации
-  firework.addEventListener("animationend", () => {
-    firework.remove();
   });
 }
