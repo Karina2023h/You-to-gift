@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (burgerMenu && nav) {
     burgerMenu.addEventListener("click", function () {
-      nav.classList.toggle("active"); // Переключает класс active у навигации
+      nav.classList.toggle("active");
     });
   } else {
     console.error('Элемент с id "burger-menu" или "nav" не найден');

@@ -20,17 +20,33 @@
 <body>
   <header>
     <div class="logo-container">
-      <img src="./img/icon.png" alt="Logo" class="logo">
+      <a href="index.html">
+        <img src="./img/icon.png" alt="Logo" class="logo"> </a>
       <h1 class="logo-title">LuckyGift</h1>
     </div>
-
+    <button class="burger-menu" id="burger-menu">&#9776;</button>
     <nav class="nav-container" id="nav">
       <a href="index.html">Головна</a>
       <a href="about.html">Про проект</a>
       <a href="reviews.html">Відгуки</a>
+      <a href="instructions.html">Інструкція</a>
       <a href="blog.html">Блог</a>
+      <div id="auth-header">
+        <button class="btn-modal" id="login-btn" style="margin-right: 10px;">Авторизація</button>
+        <span id="logged-in-user" style="margin-left: 10px;"></span>
+        <button class="btn-modal" id="logout-btn" style="display:none;">Вийти</button>
+      </div>
+
+      <aside class="aside-container">
+        <button class="aside-butn" onclick="window.location.href='randomtou.html'">Рандомайзери</button>
+        <input type="file" id="upload-participants" accept=".csv,.xlsx" style="display:none"
+          onchange="uploadParticipants()">
+        <button class="aside-butn" onclick="document.getElementById('upload-participants').click()">Завантажити
+          учасників</button>
+        <button class="aside-butn" id="view-participants-btn" onclick="viewParticipants()">Переглянути
+          учасників</button>
+      </aside>
     </nav>
-    <button class="burger-menu" id="burger-menu">&#9776;</button>
   </header>
 
   <div class="la-container">
