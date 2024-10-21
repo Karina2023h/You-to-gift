@@ -8,6 +8,15 @@
     box-sizing: border-box;
   }
 
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+    padding-right: 1px;
+  }
+
 
   .firework-container {
     position: fixed;
@@ -70,6 +79,7 @@
     display: none;
     flex-direction: column;
     gap: 12px;
+    margin-top: 1px;
   }
 
   .aside-container {
@@ -84,9 +94,9 @@
   }
 
   #result-box {
-    background-color: #ffffff;
+    background-color: #1262eb;
     color: #454646;
-    font-size: 8rem;
+    font-size: 6rem;
     width: 300px;
     height: 300px;
     display: flex;
